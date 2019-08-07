@@ -151,25 +151,52 @@ func main(){
 	fmt.Println("End  SUCCESS")
 }
 
-//首字母大写
-func strFirstToUpper(str string) string {
-	var upperStr string
-	vv := []rune(str)   // 后文有介绍
-	for i := 0; i < len(vv); i++ {
-		if i == 0 {
-			if vv[i] >= 97 && vv[i] <= 122 {  // 后文有介绍
-				vv[i] -= 32 // string的码表相差32位
-				upperStr += string(vv[i])
-			} else {
-				fmt.Println("Not begins with lowercase letter,")
-				return str
-			}
-		} else {
-			upperStr += string(vv[i])
-		}
-	}
-	return upperStr
+// 首字母大写
+// func strFirstToUpper(str string) string {
+// 	var upperStr string
+// 	vv := []rune(str)   // 后文有介绍
+// 	for i := 0; i < len(vv); i++ {
+// 		if i == 0 {
+// 			if vv[i] >= 97 && vv[i] <= 122 {  // 后文有介绍
+// 				vv[i] -= 32 // string的码表相差32位
+// 				upperStr += string(vv[i])
+// 			} else {
+// 				fmt.Println("Not begins with lowercase letter,")
+// 				return str
+// 			}
+// 		} else {
+// 			upperStr += string(vv[i])
+// 		}
+// 	}
+// 	return upperStr
+// }
+
+
+//首字母大写 _修改为大驼峰
+func strFirstToUpper(src string) string {
+	temp := strings.Split(src, "_") // 有下划线的，需要拆分
+ 	var str string
+ 	for i := 0; i < len(temp); i++ {
+  		b := []rune(temp[i])
+  		for j := 0; j < len(b); j++ {
+   			if j == 0 {
+   			 // 首字母大写转换
+   				 b[j] -= 32
+    				str += string(b[j])
+   			} else {
+    				str += string(b[j])
+   			}
+  		}
+ 	}
+
+ 	return str
 }
+
+
+
+
+
+
 
 //判断用户输入
 func checkpath(path string)bool{
